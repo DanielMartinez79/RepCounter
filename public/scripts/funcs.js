@@ -193,3 +193,45 @@ function showProg(){
 }
 
 
+function saveReps(){
+    var inp = document.getElementById("currentInput");
+    var obj = {"name" : inp.parentNode.getElementsByClassName("exerciseName")[0].innerText, "set": inp.name, "reps": inp.value, "weight": inp.parentNode.getElementsByClassName("weightRange")[0].value }
+    console.log(obj);
+    var jsonObj = JSON.stringify(obj);
+    sendAJAX(jsonObj);
+    return false;
+}
+
+function updateReps(){
+    var inp = document.getElementById("currentInput");
+    var obj = {"name" : inp.parentNode.getElementsByClassName("exerciseName")[0].innerText, "set": inp.name, "reps": inp.value, "weight": inp.parentNode.getElementsByClassName("weightRange")[0].value }
+    console.log(obj);
+    var jsonObj = JSON.stringify(obj);
+    updateAJAX(jsonObj);
+    return false;
+}
+function checkRepeat(val){
+    var coll = document.getElementById("exerciseList").getElementsByClassName("exercise_name");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+        if (coll[i].innerText.includes(val)) {
+            alert("Duplicate");
+            return false;
+        } 
+    }
+    return true;
+}
+
+
+function reset(obj,val) {
+    document.getElementById(val).innerHTML = "";
+    obj.style.display = "none";
+}
+
+function checkEmpty(val) {
+    if (val === "") {
+        alert("Empty");
+        return false;
+
+    } else return true;
+}
